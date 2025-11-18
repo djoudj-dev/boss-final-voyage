@@ -2,9 +2,9 @@
 
 Application de réservation de voyages développée avec **Angular 20+** et les dernières fonctionnalités du framework. Ce projet illustre les meilleures pratiques Angular modernes avec une architecture standalone, des Signals, et une gestion d'état réactive.
 
-![Angular](https://img.shields.io/badge/Angular-20.3-DD0031?style=for-the-badge&logo=angular&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-4.1-06B6D4?style=for-the-badge)
+![Angular](https://badgen.net/badge/Angular/20.3/DD0031?icon=https://simpleicons.org/icons/angular.svg)
+![TypeScript](https://badgen.net/badge/TypeScript/5.9/3178C6?icon=https://simpleicons.org/icons/typescript.svg)
+![TailwindCSS](https://badgen.net/badge/TailwindCSS/4.1/06B6D4?icon=https://simpleicons.org/icons/tailwindcss.svg)
 
 ## ✨ Fonctionnalités
 
