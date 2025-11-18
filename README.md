@@ -1,34 +1,67 @@
-# BossFinalVoyage
+# ✈️ Boss de fin : Envie de voyage ?
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.7.
+Exercice pratique Angular 20+ - Formulaire de réservation de voyage avec validation et gestion d'état.
 
-## Development server
+## 🎯 Objectif de l'exercice
 
-To start a local development server, run:
+Créer un formulaire de réservation complet avec :
 
-```bash
-ng serve
-```
+- ✅ 5 sections de formulaire (infos perso, type voyage, vol, passager extra, options)
+- ✅ Validations natives et customs
+- ✅ Liste des réservations
+- ✅ Persistance en localStorage
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🚀 Démarrage rapide
 
 ```bash
-ng generate component component-name
+npm install
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Application sur http://localhost:4200
 
-```bash
-ng generate --help
+## 📁 Architecture (pragmatique)## 📁 Architecture (pragmatique)
+
+```
+src/app/
+├── features/booking/
+│   ├── components/          # UI
+│   │   ├── form/           # Formulaire
+│   │   ├── list/           # Liste
+│   │   └── item/           # Item
+│   ├── services/
+│   │   └── reservation-service.ts
+│   └── models/
+│       └── reservation-model.ts
+└── shared/                  # Réutilisable
+    ├── cards/
+    ├── form-field/
+    ├── validators/
+    └── toast/
 ```
 
-## Building
+## ✅ Bonnes pratiques Angular 20+
 
-To build the project run:
+- **Standalone components** (pas de NgModules)
+- **Signals** pour l'état réactif
+- **OnPush** change detection
+- **inject()** au lieu de constructors
+- **@if/@for** au lieu de *ngIf/*ngFor
+- **input()/output()** functions
+- **toSignal()** pour les Observables
+- **Reactive Forms** avec validations dynamiques
+
+## 🎓 Note sur l'approche
+
+Ce projet adopte une **architecture pragmatique** adaptée à un exercice :
+
+- ✅ Code simple et lisible
+- ✅ Juste ce qui est nécessaire
+- ❌ Pas de sur-engineering
+
+Pour la production, ajoutez : tests, state management, API, i18n...
+
+## 📦 Build
 
 ```bash
 ng build

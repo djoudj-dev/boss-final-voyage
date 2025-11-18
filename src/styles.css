@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss';
+
+@theme {
+  --color-text: oklch(98% 0.01 280); /* Texte blanc très clair */
+  --color-background: oklch(8% 0.01 280); /* Fond noir profond */
+  --color-primary: oklch(60% 0.32 290); /* Violet électrique intense */
+  --color-secondary: oklch(18% 0.04 280); /* Gris foncé avec nuance violette */
+  --color-accent: oklch(75% 0.25 290); /* Violet clair lumineux */
+  --color-red: oklch(62% 0.25 29); /* Rouge pour erreurs/delete */
+  --color-success: oklch(65% 0.18 145); /* Vert pour succès */
+}
+
+body {
+  background-color: oklch(8% 0.01 280);
+  margin: 0;
+  padding: 0;
+}
