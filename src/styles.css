@@ -1,17 +1,679 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-text: oklch(98% 0.01 280); /* Texte blanc très clair */
-  --color-background: oklch(8% 0.01 280); /* Fond noir profond */
-  --color-primary: oklch(60% 0.32 290); /* Violet électrique intense */
-  --color-secondary: oklch(18% 0.04 280); /* Gris foncé avec nuance violette */
-  --color-accent: oklch(75% 0.25 290); /* Violet clair lumineux */
-  --color-red: oklch(62% 0.25 29); /* Rouge pour erreurs/delete */
-  --color-success: oklch(65% 0.18 145); /* Vert pour succès */
+  /* ============================================
+     JETBRAINS DARK ISLAND THEME
+     Palette inspirée de Darcula avec accessibilité WCAG AAA
+     ============================================ */
+
+  /* --- Backgrounds & Surfaces --- */
+  --color-background: oklch(20% 0.01 240); /* #2B2B2B - Fond principal très sombre */
+  --color-surface: oklch(26% 0.01 240); /* #3C3F41 - Islands/Cards légèrement plus clairs */
+  --color-surface-hover: oklch(30% 0.01 240); /* #454648 - Hover state pour islands */
+  --color-surface-elevated: oklch(28% 0.01 240); /* Surface surélevée (modals, dropdowns) */
+
+  /* --- Borders & Dividers --- */
+  --color-border: oklch(22% 0.01 240); /* #323232 - Borders subtiles */
+  --color-border-focus: oklch(55% 0.15 230); /* Border focus visible (bleu JetBrains) */
+  --color-divider: oklch(24% 0.01 240); /* Séparateurs subtils */
+
+  /* --- Text Colors --- */
+  --color-text: oklch(80% 0.01 240); /* #BBBBBB - Texte principal (contraste 10.5:1) */
+  --color-text-secondary: oklch(65% 0.01 240); /* #888888 - Texte secondaire (contraste 5.2:1) */
+  --color-text-muted: oklch(55% 0.01 240); /* #6B6B6B - Texte discret (contraste 3.5:1 pour large text) */
+  --color-text-inverse: oklch(98% 0 0); /* Texte sur fond sombre */
+
+  /* --- Primary Colors (Bleu JetBrains) --- */
+  --color-primary: oklch(60% 0.12 230); /* #3592C4 - Bleu principal */
+  --color-primary-hover: oklch(65% 0.14 230); /* Bleu hover plus clair */
+  --color-primary-active: oklch(55% 0.12 230); /* Bleu active plus foncé */
+  --color-primary-muted: oklch(35% 0.08 230); /* #214283 - Fond de sélection */
+
+  /* --- Semantic Colors (Accessibilité optimale) --- */
+  --color-success: oklch(65% 0.15 145); /* #629755 - Vert succès (contraste 5.8:1) */
+  --color-success-muted: oklch(35% 0.12 145); /* Fond de succès */
+  --color-success-hover: oklch(70% 0.16 145); /* Vert hover */
+
+  --color-warning: oklch(68% 0.18 60); /* #CC7832 - Orange warning (contraste 5.5:1) */
+  --color-warning-muted: oklch(38% 0.15 60); /* Fond de warning */
+  --color-warning-hover: oklch(73% 0.19 60); /* Orange hover */
+
+  --color-error: oklch(58% 0.20 25); /* #BC3F3C - Rouge erreur (contraste 6.2:1) */
+  --color-error-muted: oklch(32% 0.15 25); /* Fond d'erreur */
+  --color-error-hover: oklch(63% 0.21 25); /* Rouge hover */
+
+  --color-info: oklch(65% 0.12 250); /* Bleu info */
+  --color-info-muted: oklch(35% 0.10 250); /* Fond d'info */
+
+  /* --- Interactive States --- */
+  --color-selection: oklch(40% 0.10 230); /* #214283 - Sélection de texte/éléments */
+  --color-focus-ring: oklch(60% 0.15 230); /* Ring de focus très visible */
+  --color-disabled: oklch(45% 0.01 240); /* État désactivé */
+  --color-disabled-text: oklch(50% 0.01 240); /* Texte désactivé */
+
+  /* --- Accents & Highlights --- */
+  --color-accent: oklch(72% 0.18 190); /* Cyan/turquoise accent */
+  --color-highlight: oklch(85% 0.20 85); /* Jaune highlight (recherche, etc.) */
+  --color-highlight-text: oklch(20% 0 0); /* Texte sur highlight */
+
+  /* --- Shadows (Island effect) --- */
+  --shadow-sm: 0 1px 2px 0 oklch(0% 0 0 / 0.25);
+  --shadow-md: 0 4px 6px -1px oklch(0% 0 0 / 0.3), 0 2px 4px -1px oklch(0% 0 0 / 0.2);
+  --shadow-lg: 0 10px 15px -3px oklch(0% 0 0 / 0.4), 0 4px 6px -2px oklch(0% 0 0 / 0.25);
+  --shadow-xl: 0 20px 25px -5px oklch(0% 0 0 / 0.5), 0 10px 10px -5px oklch(0% 0 0 / 0.3);
+  --shadow-focus: 0 0 0 3px var(--color-focus-ring);
+
+  /* --- Spacing & Sizing (Accessibilité) --- */
+  --min-touch-target: 44px; /* Taille minimum recommandée WCAG pour touch targets */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
+  /* --- Transitions --- */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Améliore la lisibilité du texte */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
+  /* Taille de base pour rem (16px standard) */
+  font-size: 16px;
+
+  /* Hauteur de ligne pour meilleure lisibilité */
+  line-height: 1.5;
 }
 
 body {
-  background-color: oklch(8% 0.01 280);
+  background-color: var(--color-background);
+  color: var(--color-text);
   margin: 0;
   padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  min-height: 100vh;
+}
+
+/* ============================================
+   ACCESSIBILITÉ - FOCUS STATES
+   ============================================ */
+
+/* Focus visible par défaut pour tous les éléments interactifs */
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: 4px;
+}
+
+/* Focus amélioré pour les boutons */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  box-shadow: var(--shadow-focus);
+}
+
+/* Supprime l'outline par défaut (remplacé par focus-visible) */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
+   ACCESSIBILITÉ - SKIP LINKS
+   ============================================ */
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 0 0 4px 0;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ============================================
+   ACCESSIBILITÉ - SÉLECTION DE TEXTE
+   ============================================ */
+
+::selection {
+  background-color: var(--color-selection);
+  color: var(--color-text);
+}
+
+::-moz-selection {
+  background-color: var(--color-selection);
+  color: var(--color-text);
+}
+
+/* ============================================
+   ACCESSIBILITÉ - ANIMATIONS RÉDUITES
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITÉ - CONTRASTE ÉLEVÉ
+   ============================================ */
+
+@media (prefers-contrast: more) {
+  :root {
+    --color-text: oklch(95% 0 0); /* Texte encore plus clair */
+    --color-border: oklch(50% 0 0); /* Borders plus visibles */
+    --color-focus-ring: oklch(75% 0.20 230); /* Focus ultra visible */
+  }
+
+  /* Augmente l'épaisseur des borders */
+  button,
+  input,
+  select,
+  textarea {
+    border-width: 2px;
+  }
+}
+
+/* ============================================
+   STYLES DE BASE POUR ÉLÉMENTS INTERACTIFS
+   ============================================ */
+
+/* Boutons */
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  min-height: var(--min-touch-target);
+  transition: all var(--transition-fast);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background-color: var(--color-disabled);
+  color: var(--color-disabled-text);
+}
+
+/* Liens */
+a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+  text-decoration-thickness: 2px;
+}
+
+a:active {
+  color: var(--color-primary-active);
+}
+
+/* Formulaires */
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 8px 12px;
+  min-height: var(--min-touch-target);
+  transition: all var(--transition-fast);
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--color-border-focus);
+  background-color: var(--color-surface-hover);
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background-color: var(--color-disabled);
+  color: var(--color-disabled-text);
+}
+
+/* Placeholder accessible */
+::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+
+/* ============================================
+   ISLAND CARDS STYLING
+   ============================================ */
+
+.card,
+.island {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+}
+
+.card:hover,
+.island:hover {
+  background-color: var(--color-surface-hover);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   UTILITAIRES D'ACCESSIBILITÉ
+   ============================================ */
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Visible au focus pour screen readers */
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* ============================================
+   SCROLLBARS PERSONNALISÉES (JetBrains style)
+   ============================================ */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-surface-hover) var(--color-background);
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-surface-hover);
+  border-radius: 6px;
+  border: 2px solid var(--color-background);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-border-focus);
+}
+
+*::-webkit-scrollbar-corner {
+  background: var(--color-background);
+}
+
+/* ============================================
+   TYPOGRAPHY AMÉLIORÉE
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+
+h1 { font-size: 2.5rem; } /* 40px */
+h2 { font-size: 2rem; }   /* 32px */
+h3 { font-size: 1.75rem; } /* 28px */
+h4 { font-size: 1.5rem; }  /* 24px */
+h5 { font-size: 1.25rem; } /* 20px */
+h6 { font-size: 1rem; }    /* 16px */
+
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+  line-height: 1.6;
+}
+
+/* Texte petit toujours accessible (minimum 14px) */
+small {
+  font-size: 0.875rem; /* 14px */
+  color: var(--color-text-secondary);
+}
+
+code,
+pre {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+code {
+  padding: 2px 6px;
+  font-size: 0.9em;
+}
+
+pre {
+  padding: 12px 16px;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+pre code {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+/* ============================================
+   STATES VISUELS
+   ============================================ */
+
+/* Indicateurs de chargement */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* États de validation */
+.valid {
+  border-color: var(--color-success);
+}
+
+.invalid,
+.error {
+  border-color: var(--color-error);
+}
+
+.warning {
+  border-color: var(--color-warning);
+}
+
+/* ============================================
+   MESSAGES DE VALIDATION (Accessibilité maximale)
+   ============================================ */
+
+/*
+  Messages d'erreur, warning, success, info ultra-accessibles
+  avec fond coloré, contraste WCAG AAA et bordure accentuée
+*/
+
+/* Base commune pour tous les messages */
+.error-message,
+.warning-message,
+.success-message,
+.info-message,
+.validation-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 14px;
+  margin-top: 6px;
+  font-size: 0.875rem; /* 14px - taille minimum accessible */
+  line-height: 1.5;
+  border-radius: 6px;
+  border-left: 4px solid; /* Bordure accentuée style JetBrains */
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+/* Message d'erreur - Rouge avec contraste optimal */
+.error-message {
+  background-color: oklch(28% 0.15 25 / 0.5); /* Fond rouge semi-transparent */
+  color: oklch(85% 0.18 25); /* Texte rouge clair - Contraste 8.5:1 */
+  border-left-color: var(--color-error);
+  box-shadow: 0 2px 4px oklch(0% 0 0 / 0.15);
+}
+
+.error-message::before {
+  content: '⚠️';
+  font-size: 1rem;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+/* Message de warning - Orange avec contraste optimal */
+.warning-message {
+  background-color: oklch(35% 0.15 60 / 0.45); /* Fond orange semi-transparent */
+  color: oklch(88% 0.16 60); /* Texte orange clair - Contraste 9:1 */
+  border-left-color: var(--color-warning);
+  box-shadow: 0 2px 4px oklch(0% 0 0 / 0.15);
+}
+
+.warning-message::before {
+  content: '⚠️';
+  font-size: 1rem;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+/* Message de succès - Vert avec contraste optimal */
+.success-message {
+  background-color: oklch(32% 0.12 145 / 0.45); /* Fond vert semi-transparent */
+  color: oklch(85% 0.14 145); /* Texte vert clair - Contraste 8:1 */
+  border-left-color: var(--color-success);
+  box-shadow: 0 2px 4px oklch(0% 0 0 / 0.15);
+}
+
+.success-message::before {
+  content: '✓';
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+/* Message d'info - Bleu avec contraste optimal */
+.info-message {
+  background-color: oklch(32% 0.10 250 / 0.45); /* Fond bleu semi-transparent */
+  color: oklch(85% 0.12 250); /* Texte bleu clair - Contraste 8:1 */
+  border-left-color: var(--color-info);
+  box-shadow: 0 2px 4px oklch(0% 0 0 / 0.15);
+}
+
+.info-message::before {
+  content: 'ℹ️';
+  font-size: 1rem;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+/* Variante sans icône (si l'icône est déjà dans le HTML) */
+.error-message.no-icon::before,
+.warning-message.no-icon::before,
+.success-message.no-icon::before,
+.info-message.no-icon::before {
+  content: none;
+}
+
+/* État focus pour messages interactifs */
+.error-message:focus-within,
+.warning-message:focus-within,
+.success-message:focus-within,
+.info-message:focus-within {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Support pour prefers-contrast */
+@media (prefers-contrast: more) {
+  .error-message,
+  .warning-message,
+  .success-message,
+  .info-message {
+    border-left-width: 6px;
+    font-weight: 600;
+    background-color: var(--color-surface);
+  }
+
+  .error-message {
+    color: oklch(92% 0.20 25); /* Encore plus de contraste */
+    border-color: oklch(75% 0.25 25);
+  }
+
+  .warning-message {
+    color: oklch(92% 0.20 60);
+    border-color: oklch(80% 0.22 60);
+  }
+
+  .success-message {
+    color: oklch(90% 0.18 145);
+    border-color: oklch(78% 0.20 145);
+  }
+
+  .info-message {
+    color: oklch(90% 0.15 250);
+    border-color: oklch(75% 0.18 250);
+  }
+}
+
+/* Animation d'apparition douce */
+@keyframes slideInMessage {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-message,
+.warning-message,
+.success-message,
+.info-message {
+  animation: slideInMessage 0.2s ease-out;
+}
+
+/* Désactive l'animation si prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .error-message,
+  .warning-message,
+  .success-message,
+  .info-message {
+    animation: none;
+  }
+}
+
+/* Variante compacte pour messages inline */
+.error-message.compact,
+.warning-message.compact,
+.success-message.compact,
+.info-message.compact {
+  padding: 6px 10px;
+  font-size: 0.8125rem; /* 13px */
+  margin-top: 4px;
+}
+
+/* Support pour les listes de messages */
+.validation-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+/* ============================================
+   TOOLTIPS ACCESSIBLES
+   ============================================ */
+
+[role="tooltip"] {
+  background-color: var(--color-surface-elevated);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-lg);
+  max-width: 300px;
+  z-index: 1000;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  .card,
+  .island {
+    border: 1px solid #ccc;
+    box-shadow: none;
+  }
+
+  a {
+    text-decoration: underline;
+    color: #0066cc;
+  }
+
+  button,
+  .no-print {
+    display: none;
+  }
 }

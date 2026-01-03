@@ -9,8 +9,8 @@ export interface Toast {
 
 @Injectable({ providedIn: 'root' })
 export class ToastService {
-  private toastsSignal = signal<Toast[]>([]);
-  toasts = this.toastsSignal.asReadonly();
+  private readonly _toastsSignal = signal<Toast[]>([]);
+  readonly toasts = this._toastsSignal.asReadonly();
 
   show(message: string, type: Toast['type'] = 'info', duration = 3000): void {
     const toast: Toast = {
@@ -20,7 +20,7 @@ export class ToastService {
       duration,
     };
 
-    this.toastsSignal.update((toasts) => [...toasts, toast]);
+    this._toastsSignal.update((toasts) => [...toasts, toast]);
 
     if (duration > 0) {
       setTimeout(() => this.dismiss(toast.id), duration);
@@ -28,7 +28,7 @@ export class ToastService {
   }
 
   dismiss(id: string): void {
-    this.toastsSignal.update((toasts) => toasts.filter((t) => t.id !== id));
+    this._toastsSignal.update((toasts) => toasts.filter((t) => t.id !== id));
   }
 
   success(message: string): void {
