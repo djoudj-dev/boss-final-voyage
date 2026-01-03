@@ -1,9 +1,9 @@
 import { Component, inject, computed } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { BookingFormContext } from './booking-form-context';
-import { SelectInput } from '../../shared/forms/select-input';
-import { DateInput } from '../../shared/forms/date-input';
+import { BookingFormContext } from '../services/booking-form-context';
+import { SelectInput } from '../../../shared/forms/select-input';
+import { DateInput } from '../../../shared/forms/date-input';
 
 @Component({
   selector: 'app-flight-info',

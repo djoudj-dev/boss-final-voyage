@@ -2,8 +2,8 @@ import { Injectable, signal, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageReservationService } from './reservation-service';
-import { ToastService } from '../../shared/toast/toast-service';
-import { ReservationFormValue, TravelType, TravelClass } from './reservation-model';
+import { ToastService } from '../../../shared/toast/toast-service';
+import { ReservationFormValue, TravelType, TravelClass } from '../models/reservation-model';
 
 interface AdditionalPassengerForm {
   firstName: FormControl<string>;

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BookingFormContext } from './booking-form-context';
+import { BookingFormContext } from '../services/booking-form-context';
 
 @Component({
   selector: 'app-travel-type',

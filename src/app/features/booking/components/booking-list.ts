@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { BookingItem } from './booking-item';
-import { Card } from '../../shared/cards/card';
-import { LocalStorageReservationService } from './reservation-service';
+import { Card } from '../../../shared/cards/card';
+import { LocalStorageReservationService } from '../services/reservation-service';
 
 @Component({
   selector: 'app-booking-list',

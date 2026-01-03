@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BookingFormContext } from './booking-form-context';
-import { TextInput } from '../../shared/forms/text-input';
+import { BookingFormContext } from '../services/booking-form-context';
+import { TextInput } from '../../../shared/forms/text-input';
 
 @Component({
   selector: 'app-personal-info',

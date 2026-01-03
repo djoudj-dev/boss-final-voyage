@@ -1,5 +1,5 @@
 import { Injectable, signal, computed, effect } from '@angular/core';
-import { Reservation, ReservationFormValue } from './reservation-model';
+import { Reservation, ReservationFormValue } from '../models/reservation-model';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageReservationService {

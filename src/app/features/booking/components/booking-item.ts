@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, input, output, signal, computed } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { Card } from '../../shared/cards/card';
+import { Card } from '../../../shared/cards/card';
 import { BookingConfirmationDialog } from './booking-confirmation-dialog';
 import { BookingCancelSuccess } from './booking-cancel-success';
-import { Reservation } from './reservation-model';
+import { Reservation } from '../models/reservation-model';
 
 const classLabels = {
   economy: '💺 Économique',

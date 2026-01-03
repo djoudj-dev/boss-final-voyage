@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BookingFormContext } from './booking-form-context';
-import { SelectInput } from '../../shared/forms/select-input';
+import { BookingFormContext } from '../services/booking-form-context';
+import { SelectInput } from '../../../shared/forms/select-input';
 
 @Component({
   selector: 'app-flight-options',

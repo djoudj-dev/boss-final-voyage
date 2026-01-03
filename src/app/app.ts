@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { BookingForm } from './features/booking/booking-form';
-import { BookingList } from './features/booking/booking-list';
+import { BookingForm } from './features/booking/components/booking-form';
+import { BookingList } from './features/booking/components/booking-list';
 import { Toast } from './shared/toast/toast';
 
 @Component({

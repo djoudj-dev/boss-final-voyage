@@ -1,12 +1,12 @@
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Card } from '../../shared/cards/card';
+import { Card } from '../../../shared/cards/card';
 import { PersonalInfo } from './personal-info';
 import { TravelType as TravelTypeComponent } from './travel-type';
 import { FlightInfo } from './flight-info';
 import { AdditionalPassenger } from './additional-passenger';
 import { FlightOptions } from './flight-options';
-import { BookingFormContext } from './booking-form-context';
+import { BookingFormContext } from '../services/booking-form-context';
 
 @Component({
   selector: 'app-booking-form',
