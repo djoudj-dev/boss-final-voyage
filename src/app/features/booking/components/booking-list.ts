@@ -40,5 +40,5 @@ import { LocalStorageReservationService } from '../services/reservation-service'
 export class BookingList {
   private readonly _reservationService = inject(LocalStorageReservationService);
 
-  protected readonly viewModel = this._reservationService.viewModel;
+  protected readonly viewModel = this._reservationService.listViewModel;
 }

@@ -67,7 +67,6 @@ export class DateInput implements ControlValueAccessor {
 
   writeValue(value: string): void {
     this.value = value ?? '';
-    // Réinitialiser touched car writeValue n'est appelé que programmatiquement
     this.touched.set(false);
   }
 

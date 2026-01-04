@@ -19,7 +19,7 @@ export class LocalStorageReservationService {
     this.removeReservation(id);
   };
 
-  readonly viewModel = computed(() => ({
+  readonly listViewModel = computed(() => ({
     reservations: this.reservations(),
     totalReservations: this.totalReservations(),
     hasReservations: this.hasReservations(),
