@@ -92,7 +92,6 @@ Ce projet met en œuvre les dernières recommandations Angular :
 - **TypeScript 5.9** - Langage de programmation
 - **TailwindCSS 4.1** - Framework CSS utility-first
 - **RxJS 7.8** - Programmation réactive
-- **Karma + Jasmine** - Tests unitaires
 
 ## 📦 Scripts disponibles
 
@@ -106,8 +105,6 @@ npm run build
 # Build en mode watch
 npm run watch
 
-# Lancer les tests
-npm test
 ```
 
 ## 📚 Parcours d'apprentissage
@@ -192,13 +189,9 @@ Maîtrise de la modification programmatique des formulaires avec compréhension 
 
 Ce projet privilégie la **clarté pédagogique** et les **bonnes pratiques** plutôt que la complexité. Pour une application de production, considérez l'ajout de :
 
-- Tests unitaires et E2E complets
 - State management global (NgRx, Signal Store)
-- Connexion à une API backend avec gestion des erreurs HTTP
-- Internationalisation (i18n)
 - Gestion avancée des erreurs et logging
 - Optimisation du bundle et lazy loading
-- Sécurité (CSRF, XSS protection)
 
 ---
 
